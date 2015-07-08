@@ -1,0 +1,36 @@
+#--账户
+select * from xuanniu_trade.currency_account where uid in(select id from xuanniu_security.security_user where mobile in('99913926577'));
+
+#--p2p_contract_id
+select p2p_contract_id from xuanniu_trade.p2p_contract where financing_contract_id = "1082"
+#--
+
+
+select * from platform_account where type =1 
+select * from p2p_contract where p2p_contract_sn ='JK00000974'
+select * from financing_contract where financing_contract_id = 974
+select * from currency_account where uid = 267
+select * from currency_account_log where currency_account_id = 110
+select * from platform_account_log where platform_account_id = 44
+
+
+#------------
+	@Test
+	public void testOpen(){
+		tradeTransactionImpl.CreateTradeAccout(867L,true);
+		System.out.println("aa");
+	}
+	@Test
+	public void testTransform(){
+        //JsonResult result = securityAccountService.transform(transformRequest);
+		//FinancingTransformRequest request = new FinancingTransformRequest();
+		//request.setFinancingContractId(451L);
+//        tradeTransactionImpl.CreateTradeAccout(817L);
+		//tradeTransactionImpl.financingTransform(969L,true);
+		//System.out.println("aa");
+		FinancingContractDomain financingContract = internalFinancingContractService.getFinancingContractById(969L);
+        tradeTransactionImpl.financingTransformSuccess(financingContract, 104L, 142L);
+        
+        104L : tradeAccount
+        142L : trade_channel_order的channel_order_id
+	}

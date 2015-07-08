@@ -1,0 +1,4 @@
+#--
+
+删除绑卡记录:
+delete from xuanniu_trade.asset_user_bindcard where uid in();

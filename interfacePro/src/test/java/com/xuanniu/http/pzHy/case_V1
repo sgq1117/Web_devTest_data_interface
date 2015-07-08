@@ -1,0 +1,117 @@
+#--
+	@Test
+	public void testOpen(){
+		tradeTransactionImpl.CreateTradeAccout(867L,true);
+		System.out.println("aa");
+	}
+	@Test
+	public void testTransform(){
+        //JsonResult result = securityAccountService.transform(transformRequest);
+		//FinancingTransformRequest request = new FinancingTransformRequest();
+		//request.setFinancingContractId(451L);
+//        tradeTransactionImpl.CreateTradeAccout(817L);
+		//tradeTransactionImpl.financingTransform(969L,true);
+		//System.out.println("aa");
+		FinancingContractDomain financingContract = internalFinancingContractService.getFinancingContractById(969L);
+        tradeTransactionImpl.financingTransformSuccess(financingContract, 104L, 142L);
+        
+        104L : tradeAccount
+        142L : trade_channel_order的channel_order_id
+	}
+
+#---------
+select * from platform_account where type =1 
+select * from p2p_contract where p2p_contract_sn ='JK00000974'
+select * from financing_contract where financing_contract_id = 974
+select * from currency_account where uid = 267
+select * from currency_account_log where currency_account_id = 110
+select * from platform_account_log where platform_account_id = 44
+
+
+99913926577
+
+77713926582
+77713926581
+77713926580
+#####---
+
+	1、初次合约未满标、
+		1） 天、月：
+
+#####----天续期--------------------------
+
+续期前
+	step1: 
+		1、配资人扣除 本金+服务费		（余额&可用减少、总冻结&配资冻结增加）
+		2、债权人扣除 投标资金			 (余额&可用减少、总冻结&投标冻结增加)
+	step2: 满标、资金划转、未派息
+		3、配资人 总冻结&配资冻结 减少
+		4、债权人 总冻结&投标冻结 减少
+		5、平台代付账户  增加 服务费*分成比例
+		6、平台现金账户  服务费*分成比例
+	step3: 
+		计息、派息、融资人 余额+可用 增加
+续期后
+	1、债权人 （服务费）余额&可用减少
+	2、平台代付账户增加余额  服务费*分成比例
+	3、平台现金账户增加余额  服务费*分成比例
+#####----月续期-------------------------
+续期前：
+	step1: 
+		1、配资人扣除 本金+利息+服务费 （余额&可用减少、 总冻结&配资冻结增加）
+		2、债权人扣除 投标资金                （余额&可用减少、总冻结&投标冻结增加）
+	《====操盘账户 额度未计入额外增加部分===》	
+	step2: 满标、资金划转、未派息
+		3、配资人 总冻结&配资冻结 减少
+		4、债权人 总冻结&投标冻结 减少
+		5、平台代付账户 增加利息费
+		6、平台现金账户 增加服务费
+	step3:
+		计息、派息、融资人 余额+可用 增加
+续期后：
+	step1:
+		1、配资人扣除 利息&服务费 （余额&可用减少、 总冻结&配资冻结增加）
+	step2:
+		1、审批通过
+	step3: 
+		1、债权人：（月利息+服务费） （余额&可用减少、总冻结 & 配资冻结 增加）
+	《====操盘账户 额度未计入额外增加部分===》
+	sep4:满标、资金划转、未派息
+		1、平台代付账户增加余额 （利息）
+		2、平台现金账户增加余额 （服务费）
+
+
+#-------
+	
+#--------
+	多月未付利息 ： 总利息-已付利息	
+#----------
+自动化测试
+1、注册A B C
+2、A充值2万 B充值3万 C充值4万
+检查A B C 账号余额
+3、A创建配资合约1万配5万，生成P2P合约
+检查A 现金账户
+4、B投标2万、C投标3万
+检查B C 余额 检查P2P合约状态
+5、A生成操盘账户 和 划转资金
+检查A B C 现金账户 操盘账户 债权账户 平台收入账户 P2P合约待付账户
+6、多次派息
+检查P2P合约待付账户 B C 现金账户
+7、结束合约
+检查P2P合约待付账户 A B C 现金账户 操盘账户 债权账户
+#---------------
+
+配资取消
+1、A配资，生成P2P合约
+检查A 现金账户
+2、调用取消配资接口
+检查A 现金账户
+3、A配资，生成P2P合约，B投满标
+检查A B现金账户
+4、调用取消配资接口
+检查A B现金账户
+
+配资续约按天、按月
+
+追加保证金

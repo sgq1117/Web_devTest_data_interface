@@ -1,0 +1,3 @@
+select * from stock_financing order by stock_financing_id desc
+select * from stock_financing_bill order by stock_financing_bill_id desc 
+select * from stock_financing_bonus order by stock_financing_bonus_id desc

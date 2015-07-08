@@ -1,0 +1,19 @@
+http("http://back.xuanniu.com:8080"){
+    Get("/p2p/terminal",[financingContractSn:financingContract.financing_contract_sn,uid:uid1])
+}
+#----
+
+http://back.xuanniu.com:8080/p2p/terminal?financingContractSn= &uid=
+
+
+uid=2567
+
+
+ #---Front续期 post
+http://www.xuanniu.com/v1/api/contract/continueInfo
+sn:PZ00001087
+usedate:2
+
+#--续期确认post
+http://back.xuanniu.com/v1/api/contract/unPassRenewal
+id:1088

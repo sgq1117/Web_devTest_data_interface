@@ -1,0 +1,15 @@
+#--
+select * from xuanniu_trade.gift_user where uid in('523','522') and status in('1')
+
+#---
+insert into xuanniu_trade.gift_user (uid,gift_amount,gift_rule_id,status,create_time,mobile,accept_gift_time) values (522,50,2,1,now(),'99913920001',NULL)
+insert into xuanniu_trade.gift_user (uid,gift_amount,gift_rule_id,status,create_time,mobile,accept_gift_time) values (523,50,2,1,now(),'99913920002',NULL)
+
+#----
+https://www.xuanniu.com/v1/api/gift/lottery
+https://www.xuanniu.com/topic/001/index.shtml
+
+#----
+insert into xuanniu_security.recommend (uid,recommend_type,source_id,create_time,activity_id) value (520,'1','524',now(),'1')
+#----
+delete from xuanniu_trade.financing_contract where financing_contract_sn in("PZ00001634","PZ00001633","PZ00001631","PZ00001629","PZ00001626","PZ00001614","PZ00001613","PZ00001568","PZ00001567")
